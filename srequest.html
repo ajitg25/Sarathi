@@ -6,7 +6,7 @@
     <body>
         <div class="banner">
             <ul>
-                <li><img src="pngegg.png"></li>
+                <li><img src="logo.png"></li>
                 <li><H1>SARATHI</H1></li>
                 
                 </ul>
@@ -21,20 +21,21 @@
                     <button onclick="getLocation()">Get Current Location</button>
                     <p id="demo"></p>
                     <script>
-                    var x = document.getElementById("demo");
-
-                    function getLocation() {
-                    if (navigator.geolocation) {
-                        navigator.geolocation.watchPosition(showPosition);
-                    } else { 
-                        x.innerHTML = "Geolocation is not supported by this browser.";
-                    }
-                    }
-                        
-                    function showPosition(position) {
-                        x.innerHTML="Latitude: " + position.coords.latitude + 
-                        "<br>Longitude: " + position.coords.longitude;
-                    }
+                        var x = document.getElementById("demo");
+    
+                        function getLocation() {
+                        if (navigator.geolocation) {
+                            navigator.geolocation.watchPosition(showPosition);
+                        } else { 
+                            x.innerHTML = "Geolocation is not supported by this browser.";
+                        }
+                        }
+                            
+                        function showPosition(position) {
+                            
+                            x.innerHTML="Latitude: " + position.coords.latitude + 
+                            "<br>Longitude: " + position.coords.longitude;
+                        }
                     </script>
                     <input type="text" name ="dest_location" placeholder="Enter your Destination">
                     <button type="submit"><span></span> SEND REQUEST</button>

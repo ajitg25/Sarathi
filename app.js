@@ -4,7 +4,13 @@ require('dotenv').config();
 const port = 3000
 const bodyParser = require("body-parser");
 const path = require('path');
+// const loc = require(__dirname + "/location.js");
 
+
+// function get_location(){
+//   var cur_loc = loc.getLoc();
+//   return cur_loc;
+// }
 
 const { auth, requiresAuth} = require('express-openid-connect');
 app.use(
@@ -26,13 +32,20 @@ app.use(express.static(path.join(__dirname, 'public')))
 // app.use('/public', express.static(path.join(__dirname,'./static')));
 
 app.get('/', (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out')
-})
-
-app.get('/home', requiresAuth(), (req, res) => {
+  if(req.oidc.isAuthenticated()){
     res.sendFile(path.join(__dirname+'/login.html'));
 
+  }
+  else{
+    res.redirect('http://localhost:3000/login');
+  }
+  // res.sendFile(req.oidc.isAuthenticated() ? path.join(__dirname+'/login.html') : "logged out")
 })
+
+// app.get('/home', requiresAuth(), (req, res) => {
+//     res.sendFile(path.join(__dirname+'/login.html'));
+
+// })
 
 app.get('/callback', (req, res) => {
   res.send('Hello Callback!')
@@ -47,12 +60,16 @@ app.post("/home", function(req, res){
 
 
   console.log(req.body);
-  // var num1 = Number(req.body.num1);
-  // var num2 = Number(req.body.num2);
+  var LoggedInAs = req.body.loginas;
+  console.log(LoggedInAs)
 
-  // var result = num1 + num2;
-  // res.send("Answer is " + result );
-
+  if(LoggedInAs=="Rider"){
+    res.sendFile(path.join(__dirname+'/srequest.html'));
+  }
+  else{
+    res.send("Driver fhi")
+  }
+  
 
 });
 
