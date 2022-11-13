@@ -65,7 +65,7 @@ app.post("/home", function(req, res){
 
   }
   else{
-    res.send("fdrig")
+    res.send("Driver SIde")
   }
 });
 
@@ -78,7 +78,7 @@ app.get("/home", function(req, res){
 
   }
   else{
-    res.send("fdrig")
+    res.send("Driver Side")
   }
 });
 
@@ -93,7 +93,6 @@ app.post("/SetDest", function(req, res){
  
   res.sendFile(path.join(__dirname+'/waiting.html'));
 
-  setTimeout(() => {  payments(); }, 5000);
 
   
 });

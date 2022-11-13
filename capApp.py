@@ -98,18 +98,18 @@ def extract_val():
         cv2.rectangle(output, (x, y), (x + w, y + h), (0, 255, 0), 1)
         cv2.putText(output, str(digit), (x - 10, y - 10),
             cv2.FONT_HERSHEY_SIMPLEX, 0.65, (0, 255, 0), 2)
-    print(digits)
+    # print(digits)
     print(u"{}{} RS".format(*digits))#consider numbers above decimal point
     dig_str=str(digits[0])+str(digits[1])
     print(dig_str)
-    cv2.imshow("Input", image)
+    # cv2.imshow("Input", image)
     cv2.imshow("Output", output)
     cv2.waitKey(0)
     return dig_str
 
 
 
-st.title("Webcam Live Feed")
+st.title("Capture the Metre Reading")
 run = st.checkbox('Run')
 capture = st.checkbox('Capture')
 FRAME_WINDOW = st.image([])
