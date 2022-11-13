@@ -6,7 +6,7 @@
     <body>
         <div class="banner">
             <ul>
-                <li><img src="pngegg.png"></li>
+                <li><img src="logo.png"></li>
                 <li><H1>SARATHI</H1></li>
                 </ul>
                 <div class="passenger_Register">
@@ -15,16 +15,17 @@
                     <br>
                     <br>
                     <form action="/SetDest" method="post">
-                        <input type="text" name ="your_location" placeholder="Enter your Location ">
+                        <input type="text" name ="your_location" id="src" placeholder="Enter your Location ">
                     <br>
                     <h3>--------------------OR--------------------</h3>
                     <button onclick="getLocation()">Get Current Location</button>
                     <p id="demo"></p>                    
                     
                     <input type="text" name ="dest_location" placeholder="Enter your Destination">
-                    <button type="submit"><span></span> SEND REQUEST</button>
+                    <button  type="submit"><span></span> SEND REQUEST</button>
                     <br>
-                    <button type="submit"><span></span>LOGOUT</button>
+
+                    <button onclick=LogOut()><span></span>LOGOUT</button>
                     </form>
                 </div>
             </div>
@@ -42,7 +43,15 @@
                 function showPosition(position) {
                     x.innerHTML="Latitude: " + position.coords.latitude + 
                     "<br>Longitude: " + position.coords.longitude;
+
                 }
+                function LogOut() {
+                    console.log("dff")
+                    window.location.replace("'http://localhost:3000/logout'");
+
+                }
+
+                
                 </script>
     </body>
 </html>

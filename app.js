@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const path = require('path');
 // const fs = require('fs');
 
+
 // const loc = require(__dirname + "/location.js");
 // const nodeWebCam = require('node-webcam');
 
@@ -31,46 +32,6 @@ app.use(
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')))
-
-// app.use('/public', express.static(path.join(__dirname,'./static')));
-// var options = {
-//   width: 1280,
-//   height: 720, 
-//   quality: 100,
-//   delay: 1,
-//   saveShots: true,
-//   output: "jpeg",
-//   device: false,
-//   callbackReturn: "location"
-// };
-
-// create instance using the above options
-// var webcam = nodeWebCam.create(options);
-// var captureShot = (amount, i, name) => {
-//   // Make sure this returns a real url to an image.
-//   return new Promise(resolve => {
-//      var path = `./images/${name}`;
- 
-//      // create folder if and only if it does not exist
-//      if(!fs.existsSync(path)) {
-//          fs.mkdirSync(path);
-//      } 
- 
-//      // capture the image
-//      webcam.capture(`./images/${name}/${name}${i}.${options.output}`, (err, data) => {
-//          if(!err) {
-//              console.log('Image created')
-//          }
-//          console.log(err);
-//          i++;
-//          if(i <= amount) {
-//              captureShot(amount, i, name);
-//          }
-//          resolve('/path/to/image.jpg')
-//      }); 
-//   })
- 
-//  };
 
 
 app.get('/', (req, res) => {
@@ -128,7 +89,28 @@ app.post("/SetDest", function(req, res){
   //         // Whatever we resolve in captureShot, that's what response will contain
   //          res.send('<img src="${response}"/>')
   //       })
-  res.sendFile(path.join(__dirname+'/scan.html'));
+
+ 
+  res.sendFile(path.join(__dirname+'/waiting.html'));
+
+  setTimeout(() => {  payments(); }, 5000);
+
+  
+});
+
+app.get("/paym", function(req,res){
+  res.sendFile(path.join(__dirname+'/payment.html'));
+})
+
+// function payments(){
+//   console.log("dsds");
+//   res.redirect('http://localhost:3000/paym');
+// }
+
+
+app.get("/SetDest", function(req, res){
+  console.log("DS")
+    res.redirect('http://localhost:3000/logout');
 
   
 });
